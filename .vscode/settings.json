@@ -1,0 +1,7 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/home/badfox16/Bases de Dados/jcalendar-1.4.jar",
+        "/home/badfox16/Bases de Dados/mysql-connector-java-8.0.30/mysql-connector-java-8.0.30.jar"
+    ]
+}

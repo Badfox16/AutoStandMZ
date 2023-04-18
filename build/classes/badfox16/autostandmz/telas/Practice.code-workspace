@@ -1,0 +1,34 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../Desktop/Practice"
+		},
+		{
+			"path": "../../../.."
+		}
+	],
+	"settings": {
+		"java.project.referencedLibraries": [
+			"lib/**/*.jar",
+			"/home/badfox16/Bases de Dados/mysql-connector-java-8.0.30/mysql-connector-java-8.0.30.jar",
+			"/home/badfox16/Bases de Dados/jcalendar-1.4.jar"
+		],
+		"liveServer.settings.multiRootWorkspaceName": "AutoStandMZ",
+		"netbeans.javaSupport.enabled": true,
+		"sqltools.connections": [
+			{
+				"mysqlOptions": {
+					"authProtocol": "xprotocol"
+				},
+				"server": "127.0.0.1",
+				"port": 33060,
+				"askForPassword": true,
+				"driver": "MySQL",
+				"name": "Exemplos",
+				"database": "bdExemplos",
+				"username": "root",
+				"connectionTimeout": 30
+			}
+		]
+	}
+}

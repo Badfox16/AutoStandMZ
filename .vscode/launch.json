@@ -1,0 +1,77 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch TMain",
+            "request": "launch",
+            "mainClass": "telas.TMain",
+            "projectName": "AutoStandMZ_56336584"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaLogin",
+            "request": "launch",
+            "mainClass": "telas.TelaLogin",
+            "projectName": "AutoStandMZ_56336584"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaDevolver",
+            "request": "launch",
+            "mainClass": "badfox16.autostandmz.telas.TelaDevolver",
+            "projectName": "AutoStandMZ_56336584"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaAlugar",
+            "request": "launch",
+            "mainClass": "badfox16.autostandmz.telas.TelaAlugar",
+            "projectName": "AutoStandMZ_56336584"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaCarros",
+            "request": "launch",
+            "mainClass": "badfox16.autostandmz.telas.TelaCarros",
+            "projectName": "AutoStandMZ_56336584"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaClientes",
+            "request": "launch",
+            "mainClass": "badfox16.autostandmz.telas.TelaClientes",
+            "projectName": "AutoStandMZ_56336584"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaLogin",
+            "request": "launch",
+            "mainClass": "badfox16.autostandmz.telas.TelaLogin",
+            "projectName": "AutoStandMZ_56336584"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaMain",
+            "request": "launch",
+            "mainClass": "badfox16.autostandmz.telas.TelaMain",
+            "projectName": "AutoStandMZ_56336584"
+        },
+        {
+            "type": "java",
+            "name": "Launch TelaUsuarios",
+            "request": "launch",
+            "mainClass": "badfox16.autostandmz.telas.TelaUsuarios",
+            "projectName": "AutoStandMZ_56336584"
+        }
+    ]
+}
