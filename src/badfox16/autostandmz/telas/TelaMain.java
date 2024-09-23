@@ -11,7 +11,6 @@ import badfox16.autostandmz.dto.*;
 import com.toedter.calendar.JDateChooser;
 import java.sql.*;
 
-
 public class TelaMain extends JFrame {
     // variaveis relevantes para a tela principal
     ImageIcon icone, mainIcon, carIcon, clnIcon, algrIcon, dvlvrIcon;
@@ -47,7 +46,7 @@ public class TelaMain extends JFrame {
     PreparedStatement prep;
     ResultSet algrSet;
 
-    //tela de devolver
+    // tela de devolver
     private JPanel redPanelD;
     private JLabel codigoDvlvr, idClnDvl, idCarDvlvr;
     private JTextField codigoDvlvrF, clnDvF, idCarDvlvrF;
@@ -254,7 +253,7 @@ public class TelaMain extends JFrame {
         });
 
         // ComboBox
-        String[] sCar = { "Disponivel", "Ocupado" };
+        String[] sCar = { "Disponivel", "Alugado", "Avariado" };
         status = new JComboBox(sCar);
         statusL.setBounds(570, 100, 120, 30);
         status.setBounds(570, 125, 120, 30);
@@ -276,7 +275,7 @@ public class TelaMain extends JFrame {
                 });
 
         // tabela para os carros
-        Object[] Carcolumn = { "IDCarro", "Marca", "Modelo", "Matricula", "Preço", "Disponivel" };
+        Object[] Carcolumn = { "IDCarro", "Marca", "Modelo", "Matricula", "Preço", "Estado" };
         modeloCar.setColumnIdentifiers(Carcolumn);
 
         tbCarros = new JTable();
@@ -600,8 +599,6 @@ public class TelaMain extends JFrame {
                         abaDevolver.setBackground(new Color(197, 4, 27));
                         logoutB.setBackground(new Color(197, 4, 27));
 
-                       
-
                     }
 
                 });
@@ -626,7 +623,7 @@ public class TelaMain extends JFrame {
         car_idLbl.setBounds(120, 100, 100, 40);
         direitaAlgr.add(car_idLbl);
 
-        //metodo para listar os carros no menu-dropdown (JComboBox)
+        // metodo para listar os carros no menu-dropdown (JComboBox)
         dadosComboBox();
         car_idJcb.addActionListener(
                 new ActionListener() {
@@ -646,17 +643,17 @@ public class TelaMain extends JFrame {
                             } else {
                                 String stat = algrSet.getString("Status");
                                 statusF.setText(stat.trim());
-                                String preco = algrSet.getString("Preco");
+                                String preco = algrSet.getString("Taxa_Diaria");
                                 taxAlgrF.setText(preco.trim());
 
-                                if (stat.equals("Disponivel")) {
+                                if (stat.equals("Disponível")) {
                                     id_ClnF.setEnabled(true);
                                     taxAlgrF.setEnabled(true);
 
                                 }
                             }
                         } catch (SQLException e1) {
-                            
+
                             e1.printStackTrace();
                         }
 
@@ -723,16 +720,16 @@ public class TelaMain extends JFrame {
         direitaAlgr.add(cancelar);
 
         cancelar.addActionListener(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    direitaAlgr.setVisible(false);
-                    direitaCln.setVisible(false);
-                    direitaDvlvr.setVisible(false);
-                    direitaM.setVisible(true);
-                    direitaCar.setVisible(false);
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        direitaAlgr.setVisible(false);
+                        direitaCln.setVisible(false);
+                        direitaDvlvr.setVisible(false);
+                        direitaM.setVisible(true);
+                        direitaCar.setVisible(false);
 
-                }
-            });
+                    }
+                });
 
         id_ClnF.setEnabled(false);
         nomeClnF.setEnabled(false);
@@ -749,20 +746,19 @@ public class TelaMain extends JFrame {
 
             @Override
             public void keyTyped(KeyEvent e) {
-                
 
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                
 
             }
         };
 
         id_ClnF.addKeyListener(listener);
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        //++++++++++++++++++++++++++++++++++++++++++++++++FIM DA ABA ALUGAR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // ++++++++++++++++++++++++++++++++++++++++++++++++FIM DA ABA
+        // ALUGAR++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         abaDevolver.addActionListener(
                 new ActionListener() {
@@ -790,10 +786,13 @@ public class TelaMain extends JFrame {
         redPanelD.setBounds(720, 0, 200, 800);
         redPanelD.setBackground(new Color(197, 4, 27));
         direitaDvlvr.add(redPanelD);
-        //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        codigoDvlvr = new JLabel("Codigo"); codigoDvlvrF = new JTextField(30);
-        idClnDvl  = new JLabel("ID Cliente"); clnDvF = new JTextField(30);
-        idCarDvlvr = new JLabel("ID Carro"); idCarDvlvrF = new JTextField(30);
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        codigoDvlvr = new JLabel("Codigo");
+        codigoDvlvrF = new JTextField(30);
+        idClnDvl = new JLabel("ID Cliente");
+        clnDvF = new JTextField(30);
+        idCarDvlvr = new JLabel("ID Carro");
+        idCarDvlvrF = new JTextField(30);
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         codigoDvlvr.setBounds(100, 100, 100, 30);
         direitaDvlvr.add(codigoDvlvr);
@@ -815,13 +814,13 @@ public class TelaMain extends JFrame {
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         btnDevolver = new JButton("Devolver");
         btnDevolver.setBounds(280, 200, 140, 40);
-        direitaDvlvr.add(        btnDevolver        );
+        direitaDvlvr.add(btnDevolver);
         btnDevolver.addActionListener(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    Devolver();
-                }
-            });
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Devolver();
+                    }
+                });
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // tabela para ler os dados inseridos
@@ -840,32 +839,30 @@ public class TelaMain extends JFrame {
         rolagemD.setBounds(0, 400, 720, 400);
         direitaDvlvr.add(rolagemD);
 
-        //listener para carregar os dados
+        // listener para carregar os dados
         KeyListener listenerD = new KeyListener() {
             @Override
             public void keyPressed(KeyEvent ev) {
-                    carIDLoad(ev);
+                carIDLoad(ev);
             }
 
             @Override
             public void keyTyped(KeyEvent e) {
-                    
 
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                    
 
             }
-    };
+        };
 
-    codigoDvlvrF.addKeyListener(listenerD);
+        codigoDvlvrF.addKeyListener(listenerD);
 
-         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++FIM DA ABA DEVOLVER++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++FIM DA ABA
+        // DEVOLVER++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // botao para dar logout do sistema
         logoutB.setBorderPainted(false);
@@ -1109,13 +1106,14 @@ public class TelaMain extends JFrame {
 
     private void AlterarCar() {
         int id_carro, preco;
-        String marca, modelo, matricula;
+        String marca, modelo, matricula, estado;
 
         id_carro = Integer.parseInt(idF.getText());
         preco = Integer.parseInt(precoF.getText());
         marca = marcaF.getText();
         modelo = modeloF.getText();
         matricula = matriculaF.getText();
+        estado = (String) status.getSelectedItem();
 
         CarrosDTO objCarrosDTO = new CarrosDTO();
 
@@ -1124,6 +1122,7 @@ public class TelaMain extends JFrame {
         objCarrosDTO.setMatricula(matricula);
         objCarrosDTO.setModelo(modelo);
         objCarrosDTO.setPreco(preco);
+        objCarrosDTO.setStatus(estado);
 
         CarrosDal objCarroDal = new CarrosDal();
         objCarroDal.editarCar(objCarrosDTO);
@@ -1146,16 +1145,18 @@ public class TelaMain extends JFrame {
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    
+
     private void Alugar() {
-        int id_carro, id_cliente, taxa;
-        String data, dataDvlvr;
+        int id_carro, id_cliente;
+        double taxa;
+        Date data, dataDvlvr;
 
         id_carro = (Integer) car_idJcb.getSelectedItem();
         id_cliente = Integer.parseInt(id_ClnF.getText());
-        taxa = Integer.parseInt(taxAlgrF.getText());
-        data = dtInicial.getDate().toString();
-        dataDvlvr =  dtFinal.getDate().toString();
+        taxa = Double.parseDouble(taxAlgrF.getText());
+        // Converter java.util.Date para java.sql.Date
+        data = new Date(dtInicial.getDate().getTime());
+        dataDvlvr = new Date(dtFinal.getDate().getTime());
 
         AluguerDTO objAluguerDTO = new AluguerDTO();
         objAluguerDTO.setId_carro(id_carro);
@@ -1169,17 +1170,17 @@ public class TelaMain extends JFrame {
 
         // atualizar o status do carro para ocupado
 
-        String sql = "update tbCarros set Status = 'Ocupado' where IDCarro = ?";
+        // String sql = "update tbCarros set Status = 'Alugado' where IDCarro = ?";
         conn = new ConexaoSQL().BDconecta();
 
         try {
-                prep = conn.prepareStatement(sql);
-                prep.setInt(1, objAluguerDTO.getId_carro());
+            // prep = conn.prepareStatement(sql);
+            // prep.setInt(1, objAluguerDTO.getId_carro());
 
-                prep.executeUpdate();
-                prep.close();
+            prep.executeUpdate();
+            prep.close();
         } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Alugar Carro" + e);
+            JOptionPane.showMessageDialog(null, "Alugar Carro" + e);
         }
 
         car_idJcb.setSelectedItem("Selecione");
@@ -1187,130 +1188,132 @@ public class TelaMain extends JFrame {
         taxAlgrF.setText("");
         dtInicial.setDate(null);
         dtFinal.setDate(null);
-}
+    }
 
-//Vector<Integer> id_car = new Vector<>();
+    // Vector<Integer> id_car = new Vector<>();
 
-public void dadosComboBox() {
+    @SuppressWarnings("unchecked")
+    public void dadosComboBox() {
 
         try {
-                CarrosDal objCarrosDal = new CarrosDal();
-                ResultSet rs = objCarrosDal.listarIdCarro();
+            CarrosDal objCarrosDal = new CarrosDal();
+            ResultSet rs = objCarrosDal.listarIdCarro();
 
-                while (rs.next()) {
-                       // id_car.addElement(rs.getInt(1));
-                        car_idJcb.addItem(rs.getInt(1));
-                }
+            while (rs.next()) {
+                // id_car.addElement(rs.getInt(1));
+                car_idJcb.addItem(rs.getInt(1));
+            }
 
         } catch (Exception e) {
-                
+
         }
 
-}
-
-private void id_ClnL(KeyEvent evt) {
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                String clientID = id_ClnF.getText();
-
-                try {
-                        conn = new ConexaoSQL().BDconecta();
-                        prep = conn.prepareStatement("select * from tbClientes where IDCliente = ?");
-                        prep.setString(1, clientID);
-
-                        algrSet = prep.executeQuery();
-
-                        if (algrSet.next() == false) {
-                                JOptionPane.showMessageDialog(null,
-                                                "Cliente não encontrado");
-                        } else {
-                                String nomeC = algrSet.getString("Nome");
-                                nomeClnF.setText(nomeC.trim());
-                                dtInicial.setEnabled(true);
-                                dtFinal.setEnabled(true);
-                        }
-                } catch (Exception e) {
-                        
-                }
-        }
-}
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-private void MostrarAluguer() {
-    AluguerDal objAluguerDal = new AluguerDal();
-    modeloD.setNumRows(0);
-
-    // ArrayList<AluguerDTO> list = objAluguerDal.PesquisaCln();
-
-    for (AluguerDTO list : objAluguerDal.PesquisaAluguer()) {
-        modeloD.addRow(new Object[] {
-                list.getCodigo(),
-                list.getId_carro(),
-                list.getId_cliente(),
-                list.getTaxa(),
-                list.getData_alugar(),
-                list.getData_devolver()
-        });
     }
-}
-//metodo para devolver carro
 
-private void CarregarCampoDvlvr(){
-    int set = tbAluguer.getSelectedRow();
-    codigoDvlvrF.setText(tbAluguer.getModel().getValueAt(set, 0).toString());
-    clnDvF.setText(tbAluguer.getModel().getValueAt(set, 0).toString());
-    idCarDvlvrF.setText(tbAluguer.getModel().getValueAt(set, 0).toString());
-}
+    private void id_ClnL(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String clientID = id_ClnF.getText();
 
-public void Devolver() {
-    int DcarId;
+            try {
+                conn = new ConexaoSQL().BDconecta();
+                prep = conn.prepareStatement("select * from tbClientes where IDCliente = ?");
+                prep.setString(1, clientID);
 
-    DcarId  = Integer.parseInt(codigoDvlvrF.getText());
+                algrSet = prep.executeQuery();
 
-    AluguerDTO objAluguerDTO = new AluguerDTO();
-    objAluguerDTO.setId_carro(DcarId);
+                if (algrSet.next() == false) {
+                    JOptionPane.showMessageDialog(null,
+                            "Cliente não encontrado");
+                } else {
+                    String nomeC = algrSet.getString("Nome");
+                    nomeClnF.setText(nomeC.trim());
+                    dtInicial.setEnabled(true);
+                    dtFinal.setEnabled(true);
+                }
+            } catch (Exception e) {
 
-    String sql = "update tbCarros set Status = 'Disponivel' where IDCarro = ?";
-    
-    Dconn = new ConexaoSQL().BDconecta();
+            }
+        }
+    }
 
-    try {
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    private void MostrarAluguer() {
+        AluguerDal objAluguerDal = new AluguerDal();
+        modeloD.setNumRows(0);
+
+        // ArrayList<AluguerDTO> list = objAluguerDal.PesquisaCln();
+
+        for (AluguerDTO list : objAluguerDal.PesquisaAluguer()) {
+            modeloD.addRow(new Object[] {
+                    list.getCodigo(),
+                    list.getId_carro(),
+                    list.getId_cliente(),
+                    list.getTaxa(),
+                    list.getData_alugar(),
+                    list.getData_devolver()
+            });
+        }
+    }
+    // metodo para devolver carro
+
+    private void CarregarCampoDvlvr() {
+        int set = tbAluguer.getSelectedRow();
+        codigoDvlvrF.setText(tbAluguer.getModel().getValueAt(set, 0).toString());
+        clnDvF.setText(tbAluguer.getModel().getValueAt(set, 0).toString());
+        idCarDvlvrF.setText(tbAluguer.getModel().getValueAt(set, 0).toString());
+    }
+
+    public void Devolver() {
+        int DcarId;
+
+        DcarId = Integer.parseInt(codigoDvlvrF.getText());
+
+        AluguerDTO objAluguerDTO = new AluguerDTO();
+        objAluguerDTO.setId_carro(DcarId);
+
+        String sql = "update tbCarros set Status = 'Disponível' where IDCarro = ?";
+
+        Dconn = new ConexaoSQL().BDconecta();
+
+        try {
             prepD = Dconn.prepareStatement(sql);
             prepD.setInt(1, objAluguerDTO.getId_carro());
 
             prepD.executeUpdate();
             prepD.close();
-    } catch (SQLException e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Alugar Carro" + e);
+        }
     }
-}
 
-private void carIDLoad(KeyEvent ev) {
-    if (ev.getKeyCode() == KeyEvent.VK_ENTER) {
+    private void carIDLoad(KeyEvent ev) {
+        if (ev.getKeyCode() == KeyEvent.VK_ENTER) {
             String carID = codigoDvlvrF.getText();
 
             try {
-                    Dconn = new ConexaoSQL().BDconecta();
-                    prepD = Dconn.prepareStatement("select * from tbAluguer where IDCarro = ?");
-                    prepD.setString(1, carID);
+                Dconn = new ConexaoSQL().BDconecta();
+                prepD = Dconn.prepareStatement("select * from tbAluguer where IDCarro = ?");
+                prepD.setString(1, carID);
 
-                    dvlvSet = prepD.executeQuery();
+                dvlvSet = prepD.executeQuery();
 
-                    if (dvlvSet.next() == true) {
-                            JOptionPane.showMessageDialog(null,
-                                            "O carro está disponivel ou não existe");
-                    } else {
-                            String nomeC = dvlvSet.getString("Nome");
-                            idCarDvlvrF.setText(nomeC.trim());
-                            
-                            int idC = dvlvSet.getInt("IDCliente");
-                            String idCln = Integer.toString(idC);
-                            clnDvF.setText(idCln.trim());
-                    }
+                if (dvlvSet.next() == true) {
+                    JOptionPane.showMessageDialog(null,
+                            "O carro está disponivel ou não existe");
+                } else {
+                    String nomeC = dvlvSet.getString("Nome");
+                    idCarDvlvrF.setText(nomeC.trim());
+
+                    int idC = dvlvSet.getInt("IDCliente");
+                    String idCln = Integer.toString(idC);
+                    clnDvF.setText(idCln.trim());
+                }
             } catch (Exception e) {
-                    
+
             }
+        }
     }
-}
 
     public static void main(String[] args) {
         TelaMain T = new TelaMain();

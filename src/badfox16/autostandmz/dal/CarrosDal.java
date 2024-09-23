@@ -14,7 +14,7 @@ public class CarrosDal {
 
     // metodo para cadastrar um carro no sistema (CREATE)
     public void signupCarro(CarrosDTO objCarrosDTO) {
-        String sql = "insert into tbCarros(Marca, Modelo, Matricula, Preco, Status) values (?,?,?,?,?)";
+        String sql = "insert into tbCarros(Marca, Modelo, Matricula, Taxa_Diaria, Status) values (?,?,?,?,?)";
 
         conexao = new ConexaoSQL().BDconecta();
 
@@ -24,7 +24,7 @@ public class CarrosDal {
             prepS.setString(2, objCarrosDTO.getModelo());
             prepS.setString(3, objCarrosDTO.getMatricula());
             prepS.setInt(4, objCarrosDTO.getPreco());
-            prepS.setString(5, objCarrosDTO.getStatus());
+            prepS.setString(5, "Disponível");
 
             prepS.execute();
             prepS.close();
@@ -51,7 +51,7 @@ public class CarrosDal {
                 objCarrosDTO.setMarca(rSet.getString("Marca"));
                 objCarrosDTO.setModelo(rSet.getString("Modelo"));
                 objCarrosDTO.setMatricula(rSet.getString("Matricula"));
-                objCarrosDTO.setPreco(rSet.getInt("Preco"));
+                objCarrosDTO.setPreco(rSet.getInt("Taxa_Diaria"));
                 objCarrosDTO.setStatus(rSet.getString("Status"));
 
                 // lista para armazenar cada linha da tabela
@@ -69,7 +69,7 @@ public class CarrosDal {
 
     // metodo para atualizar os dados da tabela (UPDATE)
     public void editarCar(CarrosDTO objCarrosDTO) {
-        String sql = "update tbCarros set Marca = ?, Modelo = ?, Matricula = ?, Preco = ? where IDCarro = ?";
+        String sql = "update tbCarros set Marca = ?, Modelo = ?, Matricula = ?, Taxa_Diaria = ?, Status = ? where IDCarro = ?";
 
         conexao = new ConexaoSQL().BDconecta();
 
@@ -79,7 +79,8 @@ public class CarrosDal {
             prepS.setString(2, objCarrosDTO.getModelo());
             prepS.setString(3, objCarrosDTO.getMatricula());
             prepS.setInt(4, objCarrosDTO.getPreco());
-            prepS.setInt(5, objCarrosDTO.getId_carro());
+            prepS.setString(5, objCarrosDTO.getStatus());
+            prepS.setInt(6, objCarrosDTO.getId_carro());
 
             prepS.execute();
             prepS.close();

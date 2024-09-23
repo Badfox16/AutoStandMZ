@@ -22,9 +22,9 @@ public class AluguerDal {
             prepS = conexao.prepareStatement(sql);
             prepS.setInt(1, objAluguerDTO.getId_cliente());
             prepS.setInt(2, objAluguerDTO.getId_carro());
-            prepS.setInt(3, objAluguerDTO.getTaxa());
-            prepS.setString(4, objAluguerDTO.getData_alugar());
-            prepS.setString(5, objAluguerDTO.getData_devolver());
+            prepS.setDouble(3, objAluguerDTO.getTaxa());
+            prepS.setDate(4, objAluguerDTO.getData_alugar());
+            prepS.setDate(5, objAluguerDTO.getData_devolver());
 
             prepS.execute();
             prepS.close();
@@ -49,9 +49,9 @@ public class AluguerDal {
                 AluguerDTO objAluguerDTO = new AluguerDTO();
                 objAluguerDTO.setId_carro(rSet.getInt("IDCarro"));
                 objAluguerDTO.setId_cliente(rSet.getInt("IDCliente"));
-                objAluguerDTO.setTaxa(rSet.getInt("Taxa"));
-                objAluguerDTO.setData_alugar(rSet.getString("Data_Aluguer"));
-                objAluguerDTO.setData_devolver(rSet.getString("Data_Devolucao"));
+                objAluguerDTO.setTaxa(rSet.getDouble("Taxa"));
+                objAluguerDTO.setData_alugar(rSet.getDate("Data_Aluguer"));
+                objAluguerDTO.setData_devolver(rSet.getDate("Data_Devolucao"));
 
                 // lista para armazenar cada linha da tabela
                 listaAlgr.add(objAluguerDTO);

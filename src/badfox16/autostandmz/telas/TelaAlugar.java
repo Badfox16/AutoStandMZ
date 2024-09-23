@@ -72,10 +72,10 @@ public class TelaAlugar extends JFrame {
                                                         } else {
                                                                 String stat = algrSet.getString("Status");
                                                                 statusF.setText(stat.trim());
-                                                                String preco = algrSet.getString("Preco");
+                                                                String preco = algrSet.getString("Taxa_Diaria");
                                                                 taxAlgrF.setText(preco.trim());
 
-                                                                if (stat.equals("Disponivel")) {
+                                                                if (stat.equals("Disponível")) {
                                                                         id_ClnF.setEnabled(true);
 
                                                                 }
@@ -184,15 +184,15 @@ public class TelaAlugar extends JFrame {
 
         private void Alugar() {
                 int id_carro, id_cliente, taxa;
-                String data, dataDvlvr;
+                Date data, dataDvlvr;
                 //dtInicial.setDateFormatString("yyyy/MM/dd");
                 //dtFinal.setDateFormatString("yyyy/MM/dd", "####/##/##");
 
                 id_carro = (Integer) car_idJcb.getSelectedItem();
                 id_cliente = Integer.parseInt(id_ClnF.getText());
                 taxa = Integer.parseInt(taxAlgrF.getText());
-                data = dtInicial.getDate().toString();
-                dataDvlvr =  dtFinal.getDate().toString();
+                data = (Date) dtInicial.getDate();
+                dataDvlvr =  (Date) dtFinal.getDate();
 
                 AluguerDTO objAluguerDTO = new AluguerDTO();
                 objAluguerDTO.setId_carro(id_carro);
@@ -206,7 +206,7 @@ public class TelaAlugar extends JFrame {
 
                 // atualizar o status do carro para ocupado
 
-                String sql = "update tbCarros set Status = 'Ocupado' where IDCarro = ?";
+                String sql = "update tbCarros set Status = 'Alugado' where IDCarro = ?";
                 conn = new ConexaoSQL().BDconecta();
 
                 try {

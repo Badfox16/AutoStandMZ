@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TelaMain",
+            "request": "launch",
+            "mainClass": "badfox16.autostandmz.telas.TelaMain",
+            "projectName": "AutoStandMZ_8515c6e2"
+        },
+        {
+            "type": "java",
             "name": "Launch TMain",
             "request": "launch",
             "mainClass": "telas.TMain",
