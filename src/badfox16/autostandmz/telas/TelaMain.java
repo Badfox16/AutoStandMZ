@@ -1092,7 +1092,6 @@ public class TelaMain extends JFrame {
         modeloF.setText(tbCarros.getModel().getValueAt(set, 2).toString());
         matriculaF.setText(tbCarros.getModel().getValueAt(set, 3).toString());
         precoF.setText(tbCarros.getModel().getValueAt(set, 4).toString());
-        int set2;
     }
 
     private void LimparCampoCar() {
@@ -1226,7 +1225,8 @@ public class TelaMain extends JFrame {
                             "Cliente não encontrado");
                 } else {
                     String nomeC = algrSet.getString("Nome");
-                    nomeClnF.setText(nomeC.trim());
+                    String apelidoC = algrSet.getString("Apelido");
+                    nomeClnF.setText(nomeC.trim() + " " + apelidoC.trim());
                     dtInicial.setEnabled(true);
                     dtFinal.setEnabled(true);
                 }
