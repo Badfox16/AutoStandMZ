@@ -14,31 +14,52 @@ public class AluguerDal {
 
     // CREATE
     public void createAlugar(AluguerDTO objAluguerDTO) {
-        String sql = "insert into tbAluguer(IDCarro, IDCliente, Taxa, Data_Aluguer, Data_Devolucao) values (?,?,?,?,?)";
-
-        conexao = new ConexaoSQL().BDconecta();
-
-        try {
-            prepS = conexao.prepareStatement(sql);
-            prepS.setInt(1, objAluguerDTO.getId_cliente());
-            prepS.setInt(2, objAluguerDTO.getId_carro());
-            prepS.setDouble(3, objAluguerDTO.getTaxa());
-            prepS.setDate(4, objAluguerDTO.getData_alugar());
-            prepS.setDate(5, objAluguerDTO.getData_devolver());
-
-            prepS.execute();
-            prepS.close();
-
+        String sqlRecuperaTaxaDiaria = "SELECT Taxa_Diaria FROM tbCarros WHERE IDCarro = ?";
+        String sqlAluguer = "INSERT INTO tbAluguer (IDCarro, IDCliente, Taxa, Data_Aluguer, Data_Devolucao) VALUES (?, ?, ?, ?, ?)";
+        String sqlAtualizaCarro = "UPDATE tbCarros SET Status = 'Alugado' WHERE IDCarro = ?";
+    
+        try (Connection conn = new ConexaoSQL().BDconecta();
+             PreparedStatement stmtRecuperaTaxaDiaria = conn.prepareStatement(sqlRecuperaTaxaDiaria);
+             PreparedStatement stmtAluguer = conn.prepareStatement(sqlAluguer);
+             PreparedStatement stmtAtualizaCarro = conn.prepareStatement(sqlAtualizaCarro)) {
+    
+            // Recuperar a Taxa Diária do carro
+            stmtRecuperaTaxaDiaria.setInt(1, objAluguerDTO.getId_carro());
+            try (ResultSet rs = stmtRecuperaTaxaDiaria.executeQuery()) {
+                if (rs.next()) {
+                    double taxaDiaria = rs.getDouble("Taxa_Diaria");
+    
+                    // Calcular a diferença em dias entre a Data de Aluguer e a Data de Devolução
+                    long diferencaEmMillis = objAluguerDTO.getData_devolver().getTime() - objAluguerDTO.getData_alugar().getTime();
+                    long dias = diferencaEmMillis / (1000 * 60 * 60 * 24); // Converter milissegundos em dias
+                    dias = (dias == 0) ? 1 : dias;  // Garantir que pelo menos 1 dia seja cobrado
+    
+                    // Calcular a taxa total
+                    double taxaTotal = dias * taxaDiaria;
+    
+                    // Inserir o registro de aluguer
+                    stmtAluguer.setInt(1, objAluguerDTO.getId_carro());
+                    stmtAluguer.setInt(2, objAluguerDTO.getId_cliente());
+                    stmtAluguer.setDouble(3, taxaTotal); // Definir a taxa total calculada
+                    stmtAluguer.setDate(4, objAluguerDTO.getData_alugar());
+                    stmtAluguer.setDate(5, objAluguerDTO.getData_devolver());
+                    stmtAluguer.executeUpdate();
+    
+                    // Atualizar o status do carro para 'Alugado'
+                    stmtAtualizaCarro.setInt(1, objAluguerDTO.getId_carro());
+                    stmtAtualizaCarro.executeUpdate();
+                }
+            }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Criar registro de aluguer: " + e);
+            JOptionPane.showMessageDialog(null, "Erro ao criar o aluguer: " + e.getMessage());
         }
-
     }
+    
 
     // READ
     public ArrayList<AluguerDTO> PesquisaAluguer() {
 
-        String sql = "select * from tbAluguer";
+        String sql = "select * from tbAluguer where estado = 'Ativo'";
         conexao = new ConexaoSQL().BDconecta();
 
         try {
@@ -47,6 +68,7 @@ public class AluguerDal {
 
             while (rSet.next()) {
                 AluguerDTO objAluguerDTO = new AluguerDTO();
+                objAluguerDTO.setCodigo(rSet.getInt("Codigo"));
                 objAluguerDTO.setId_carro(rSet.getInt("IDCarro"));
                 objAluguerDTO.setId_cliente(rSet.getInt("IDCliente"));
                 objAluguerDTO.setTaxa(rSet.getDouble("Taxa"));

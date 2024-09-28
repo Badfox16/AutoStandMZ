@@ -639,7 +639,7 @@ public class TelaMain extends JFrame {
 
                             if (algrSet.next() == false) {
                                 JOptionPane.showMessageDialog(null,
-                                        "Carro não encontrado");
+                                        "Carro alugado");
                             } else {
                                 String stat = algrSet.getString("Status");
                                 statusF.setText(stat.trim());
@@ -824,7 +824,7 @@ public class TelaMain extends JFrame {
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // tabela para ler os dados inseridos
-        Object[] columnD = { "Codigo", "ID Cliente", "ID Carro", "Taxa", "Data Aluguer", "Data Devolução" };
+        Object[] columnD = { "Codigo", "ID Carro", "ID Cliente", "Taxa", "Data Aluguer", "Data Devolução" };
         modeloD.setColumnIdentifiers(columnD);
 
         tbAluguer = new JTable();
@@ -1147,48 +1147,36 @@ public class TelaMain extends JFrame {
 
     private void Alugar() {
         int id_carro, id_cliente;
-        double taxa;
-        Date data, dataDvlvr;
-
-        id_carro = (Integer) car_idJcb.getSelectedItem();
+        double taxaTotal;
+        Date dataAlugar, dataDevolver;
+    
+        // Recuperar os valores do formulário
+        id_carro = Integer.parseInt(car_idJcb.getSelectedItem().toString());
         id_cliente = Integer.parseInt(id_ClnF.getText());
-        taxa = Double.parseDouble(taxAlgrF.getText());
+    
         // Converter java.util.Date para java.sql.Date
-        data = new Date(dtInicial.getDate().getTime());
-        dataDvlvr = new Date(dtFinal.getDate().getTime());
-
+        dataAlugar = new Date(dtInicial.getDate().getTime());
+        dataDevolver = new Date(dtFinal.getDate().getTime());
+    
+        // Instanciar o DTO de Aluguer
         AluguerDTO objAluguerDTO = new AluguerDTO();
         objAluguerDTO.setId_carro(id_carro);
         objAluguerDTO.setId_cliente(id_cliente);
-        objAluguerDTO.setTaxa(taxa);
-        objAluguerDTO.setData_alugar(data);
-        objAluguerDTO.setData_devolver(dataDvlvr);
-
+        objAluguerDTO.setData_alugar(dataAlugar);
+        objAluguerDTO.setData_devolver(dataDevolver);
+    
+        // Chamar o método para criar o aluguer
         AluguerDal objAluguerDal = new AluguerDal();
         objAluguerDal.createAlugar(objAluguerDTO);
-
-        // atualizar o status do carro para ocupado
-
-        // String sql = "update tbCarros set Status = 'Alugado' where IDCarro = ?";
-        conn = new ConexaoSQL().BDconecta();
-
-        try {
-            // prep = conn.prepareStatement(sql);
-            // prep.setInt(1, objAluguerDTO.getId_carro());
-
-            prep.executeUpdate();
-            prep.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Alugar Carro" + e);
-        }
-
+    
+        // Limpar os campos do formulário
         car_idJcb.setSelectedItem("Selecione");
-        idClnF.setText("");
+        id_ClnF.setText("");
         taxAlgrF.setText("");
         dtInicial.setDate(null);
         dtFinal.setDate(null);
     }
-
+    
     // Vector<Integer> id_car = new Vector<>();
 
     @SuppressWarnings("unchecked")
@@ -1265,27 +1253,74 @@ public class TelaMain extends JFrame {
     }
 
     public void Devolver() {
-        int DcarId;
-
-        DcarId = Integer.parseInt(codigoDvlvrF.getText());
-
-        AluguerDTO objAluguerDTO = new AluguerDTO();
-        objAluguerDTO.setId_carro(DcarId);
-
-        String sql = "update tbCarros set Status = 'Disponível' where IDCarro = ?";
-
+        int codigoAluguer;
+        codigoAluguer = Integer.parseInt(codigoDvlvrF.getText());
+    
+        String sqlAtualizaAluguer = "UPDATE tbAluguer SET Estado = 'Concluido', Data_Devolucao = ?, Taxa = ? WHERE Codigo = ?";
+        String sqlAtualizaCarro = "UPDATE tbCarros SET Status = 'Disponível' WHERE IDCarro = (SELECT IDCarro FROM tbAluguer WHERE Codigo = ?)";
+        String sqlRecuperaDadosAluguer = "SELECT a.Data_Aluguer, c.Taxa_Diaria FROM tbAluguer a "
+                + "JOIN tbCarros c ON a.IDCarro = c.IDCarro WHERE a.Codigo = ?";
+    
         Dconn = new ConexaoSQL().BDconecta();
-
-        try {
-            prepD = Dconn.prepareStatement(sql);
-            prepD.setInt(1, objAluguerDTO.getId_carro());
-
-            prepD.executeUpdate();
-            prepD.close();
+    
+        try (PreparedStatement stmtAtualizaAluguer = Dconn.prepareStatement(sqlAtualizaAluguer);
+             PreparedStatement stmtAtualizaCarro = Dconn.prepareStatement(sqlAtualizaCarro);
+             PreparedStatement stmtRecuperaDadosAluguer = Dconn.prepareStatement(sqlRecuperaDadosAluguer)) {
+    
+            // Recuperar os dados do aluguer (Data de Aluguer e Taxa Diária)
+            stmtRecuperaDadosAluguer.setInt(1, codigoAluguer);
+            try (ResultSet rs = stmtRecuperaDadosAluguer.executeQuery()) {
+                if (rs.next()) {
+                    Date dataAluguer = rs.getDate("Data_Aluguer");
+                    double taxaDiaria = rs.getDouble("Taxa_Diaria");
+    
+                    // Calcular a data de devolução (data atual)
+                    long millis = System.currentTimeMillis();
+                    Date dataDevolucao = new java.sql.Date(millis);
+    
+                    // Calcular a diferença em dias entre a Data de Aluguer e a Data de Devolução
+                    long diferencaEmMillis = dataDevolucao.getTime() - dataAluguer.getTime();
+                    long dias = diferencaEmMillis / (1000 * 60 * 60 * 24); // Converter milissegundos em dias
+    
+                    // Garantir que pelo menos 1 dia seja cobrado
+                    dias = (dias == 0) ? 1 : dias;
+    
+                    // Calcular a nova taxa com base nos dias efetivamente alugados
+                    double novaTaxa = dias * taxaDiaria;
+    
+                    // Atualizar a data de devolução e a taxa recalculada no aluguer
+                    stmtAtualizaAluguer.setDate(1, dataDevolucao); // Data de devolução (agora)
+                    stmtAtualizaAluguer.setDouble(2, novaTaxa); // Nova taxa calculada
+                    stmtAtualizaAluguer.setInt(3, codigoAluguer); // Código do aluguer
+                    stmtAtualizaAluguer.executeUpdate();
+    
+                    // Atualizar o status do carro para 'Disponível'
+                    stmtAtualizaCarro.setInt(1, codigoAluguer);
+                    stmtAtualizaCarro.executeUpdate();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Código de aluguer não encontrado!");
+                }
+            }
+    
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Alugar Carro" + e);
+            JOptionPane.showMessageDialog(null, "Erro ao devolver carro: " + e.getMessage());
+        } finally {
+            try {
+                if (Dconn != null) {
+                    Dconn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+    
+        // Limpar os campos do formulário
+        codigoDvlvrF.setText("");
+        clnDvF.setText("");
+        idCarDvlvrF.setText("");
+        MostrarAluguer();
     }
+    
 
     private void carIDLoad(KeyEvent ev) {
         if (ev.getKeyCode() == KeyEvent.VK_ENTER) {
