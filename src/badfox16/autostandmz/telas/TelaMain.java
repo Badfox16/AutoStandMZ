@@ -68,7 +68,7 @@ public class TelaMain extends JFrame {
         esquerdaP = new JPanel();
         esquerdaP.setLayout(null);
         esquerdaP.setBounds(0, 0, 280, 800);
-        esquerdaP.setBackground(new Color(197, 4, 27));
+        esquerdaP.setBackground(new Color(26, 9, 133));
 
         // painel principal
         direitaM = new JPanel();
@@ -84,13 +84,13 @@ public class TelaMain extends JFrame {
         titulo = new JLabel("AUTOSTAND");
         titulo.setBounds(300, 0, 400, 130);
         titulo.setFont(new Font("Lucida", Font.BOLD, 46));
-        titulo.setForeground(new Color(197, 4, 27));
+        titulo.setForeground(new Color(26, 9, 133));
         direitaM.add(titulo);
 
         subt = new JLabel("Gestão de Aluguer de Viaturas");
         subt.setBounds(300, 80, 600, 130);
         subt.setFont(new Font("Lucida", Font.BOLD, 30));
-        subt.setForeground(new Color(197, 4, 27));
+        subt.setForeground(new Color(26, 9, 133));
         direitaM.add(subt);
 
         // painel para gerir carros
@@ -150,10 +150,10 @@ public class TelaMain extends JFrame {
                         direitaCar.setVisible(true);
 
                         abaCarros.setBackground(new Color(225, 230, 235, 255));
-                        abaCliente.setBackground(new Color(197, 4, 27));
-                        abaAlugar.setBackground(new Color(197, 4, 27));
-                        abaDevolver.setBackground(new Color(197, 4, 27));
-                        logoutB.setBackground(new Color(197, 4, 27));
+                        abaCliente.setBackground(new Color(26, 9, 133));
+                        abaAlugar.setBackground(new Color(26, 9, 133));
+                        abaDevolver.setBackground(new Color(26, 9, 133));
+                        logoutB.setBackground(new Color(26, 9, 133));
 
                         MostrarCar();
                     }
@@ -190,63 +190,63 @@ public class TelaMain extends JFrame {
         precoF.setBounds(730, 125, 100, 30);
 
         // estilo para os textfields
-        idF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+        idF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
         marcaF.requestFocus();
         marcaF.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent focusEvent) {
-                marcaF.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+                marcaF.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                marcaF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+                marcaF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
 
             }
 
         });
-        modeloF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+        modeloF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
         modeloF.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent focusEvent) {
-                modeloF.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+                modeloF.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                modeloF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+                modeloF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
 
             }
 
         });
-        matriculaF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+        matriculaF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
         matriculaF.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent focusEvent) {
-                matriculaF.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+                matriculaF.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                matriculaF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+                matriculaF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
 
             }
 
         });
-        precoF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+        precoF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
         precoF.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent focusEvent) {
-                precoF.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+                precoF.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                precoF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+                precoF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
 
             }
 
@@ -257,12 +257,12 @@ public class TelaMain extends JFrame {
         status = new JComboBox(sCar);
         statusL.setBounds(570, 100, 120, 30);
         status.setBounds(570, 125, 120, 30);
-        status.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+        status.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
         // botao para cadastro de novo usuario que so o administrador podera realizar
         salvarCar = new JButton("Salvar");
         salvarCar.setForeground(Color.WHITE);
-        salvarCar.setBackground(new Color(197, 4, 27));
+        salvarCar.setBackground(new Color(26, 9, 133));
         salvarCar.setFont(new Font("Lucida", Font.BOLD, 16));
 
         // cadastro do usuario na base de dados
@@ -286,11 +286,11 @@ public class TelaMain extends JFrame {
 
         JScrollPane rolagemCar = new JScrollPane(tbCarros);
         rolagemCar.getViewport().setViewPosition(new Point(280, 280));
-        rolagemCar.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+        rolagemCar.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
         rolagemCar.setBounds(0, 370, 920, 350);
         carregarCar = new JButton("Selecionar");
         carregarCar.setForeground(Color.WHITE);
-        carregarCar.setBackground(new Color(197, 4, 27));
+        carregarCar.setBackground(new Color(26, 9, 133));
         carregarCar.setFont(new Font("Lucida", Font.BOLD, 18));
 
         carregarCar.addActionListener(
@@ -305,7 +305,7 @@ public class TelaMain extends JFrame {
         // botao para apagar linha da tabela
         apagarCar = new JButton("Apagar");
         apagarCar.setForeground(Color.WHITE);
-        apagarCar.setBackground(new Color(197, 4, 27));
+        apagarCar.setBackground(new Color(26, 9, 133));
         apagarCar.setFont(new Font("Lucida", Font.BOLD, 16));
 
         apagarCar.addActionListener(
@@ -320,7 +320,7 @@ public class TelaMain extends JFrame {
         // botao para apagar linha da tabela
         editarCar = new JButton("Alterar");
         editarCar.setForeground(Color.WHITE);
-        editarCar.setBackground(new Color(197, 4, 27));
+        editarCar.setBackground(new Color(26, 9, 133));
         editarCar.setFont(new Font("Lucida", Font.BOLD, 16));
 
         editarCar.addActionListener(
@@ -335,7 +335,7 @@ public class TelaMain extends JFrame {
         // bota para limpar campos
         limparCar = new JButton("Limpar");
         limparCar.setForeground(Color.WHITE);
-        limparCar.setBackground(new Color(197, 4, 27));
+        limparCar.setBackground(new Color(26, 9, 133));
         limparCar.setFont(new Font("Lucida", Font.BOLD, 16));
 
         limparCar.addActionListener(
@@ -386,11 +386,11 @@ public class TelaMain extends JFrame {
                         direitaM.setVisible(false);
                         direitaCar.setVisible(false);
 
-                        abaCarros.setBackground(new Color(197, 4, 27));
+                        abaCarros.setBackground(new Color(26, 9, 133));
                         abaCliente.setBackground(new Color(225, 230, 235, 255));
-                        abaAlugar.setBackground(new Color(197, 4, 27));
-                        abaDevolver.setBackground(new Color(197, 4, 27));
-                        logoutB.setBackground(new Color(197, 4, 27));
+                        abaAlugar.setBackground(new Color(26, 9, 133));
+                        abaDevolver.setBackground(new Color(26, 9, 133));
+                        logoutB.setBackground(new Color(26, 9, 133));
 
                         MostrarClientes();
                     }
@@ -421,48 +421,48 @@ public class TelaMain extends JFrame {
         telefoneF.setBounds(610, 125, 200, 30);
 
         // estilo para as bordas dos textfields
-        idClnF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
-        nomeF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+        idClnF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
+        nomeF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
         nomeF.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent focusEvent) {
-                nomeF.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+                nomeF.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                nomeF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+                nomeF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
 
             }
 
         });
-        biF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+        biF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
         biF.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent focusEvent) {
-                biF.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+                biF.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                biF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+                biF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
 
             }
 
         });
-        telefoneF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+        telefoneF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
         telefoneF.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent focusEvent) {
-                telefoneF.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+                telefoneF.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                telefoneF.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+                telefoneF.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
 
             }
 
@@ -471,7 +471,7 @@ public class TelaMain extends JFrame {
         // butoes para as operacoes do crud
         salvarCln = new JButton("Salvar");
         salvarCln.setForeground(Color.WHITE);
-        salvarCln.setBackground(new Color(197, 4, 27));
+        salvarCln.setBackground(new Color(26, 9, 133));
         salvarCln.setBounds(330, 275, 150, 45);
         salvarCln.setFont(new Font("Lucida", Font.BOLD, 16));
 
@@ -487,12 +487,12 @@ public class TelaMain extends JFrame {
 
         JScrollPane rolagem = new JScrollPane(tbClientes);
         rolagem.getViewport().setViewPosition(new Point(280, 280));
-        rolagem.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+        rolagem.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
         rolagem.setBounds(0, 370, 920, 350);
 
         carregar = new JButton("Selecionar");
         carregar.setForeground(Color.WHITE);
-        carregar.setBackground(new Color(197, 4, 27));
+        carregar.setBackground(new Color(26, 9, 133));
         carregar.setFont(new Font("Lucida", Font.BOLD, 18));
 
         carregar.addActionListener(
@@ -515,7 +515,7 @@ public class TelaMain extends JFrame {
         // botao para apagar linha da tabela
         apagarCln = new JButton("Apagar");
         apagarCln.setForeground(Color.WHITE);
-        apagarCln.setBackground(new Color(197, 4, 27));
+        apagarCln.setBackground(new Color(26, 9, 133));
         apagarCln.setFont(new Font("Lucida", Font.BOLD, 16));
 
         apagarCln.addActionListener(
@@ -530,7 +530,7 @@ public class TelaMain extends JFrame {
         // botao para apagar linha da tabela
         editarCln = new JButton("Editar");
         editarCln.setForeground(Color.WHITE);
-        editarCln.setBackground(new Color(197, 4, 27));
+        editarCln.setBackground(new Color(26, 9, 133));
         editarCln.setFont(new Font("Lucida", Font.BOLD, 16));
 
         editarCln.addActionListener(
@@ -543,7 +543,7 @@ public class TelaMain extends JFrame {
 
         limparCln = new JButton("Limpar");
         limparCln.setForeground(Color.WHITE);
-        limparCln.setBackground(new Color(197, 4, 27));
+        limparCln.setBackground(new Color(26, 9, 133));
         limparCln.setBounds(780, 275, 150, 45);
         limparCln.setFont(new Font("Lucida", Font.BOLD, 16));
 
@@ -593,11 +593,11 @@ public class TelaMain extends JFrame {
                         direitaM.setVisible(false);
                         direitaCar.setVisible(false);
 
-                        abaCarros.setBackground(new Color(197, 4, 27));
-                        abaCliente.setBackground(new Color(197, 4, 27));
+                        abaCarros.setBackground(new Color(26, 9, 133));
+                        abaCliente.setBackground(new Color(26, 9, 133));
                         abaAlugar.setBackground(new Color(225, 230, 235, 255));
-                        abaDevolver.setBackground(new Color(197, 4, 27));
-                        logoutB.setBackground(new Color(197, 4, 27));
+                        abaDevolver.setBackground(new Color(26, 9, 133));
+                        logoutB.setBackground(new Color(26, 9, 133));
 
                     }
 
@@ -606,7 +606,7 @@ public class TelaMain extends JFrame {
         abaAlugar.setFocusPainted(false);
         redPanel = new JPanel(null);
         redPanel.setBounds(640, 0, 280, 800);
-        redPanel.setBackground(new Color(197, 4, 27));
+        redPanel.setBackground(new Color(26, 9, 133));
         direitaAlgr.add(redPanel);
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         String[] Carros = { "Selecione" };
@@ -769,11 +769,11 @@ public class TelaMain extends JFrame {
                         direitaM.setVisible(false);
                         direitaCar.setVisible(false);
 
-                        abaCarros.setBackground(new Color(197, 4, 27));
-                        abaCliente.setBackground(new Color(197, 4, 27));
-                        abaAlugar.setBackground(new Color(197, 4, 27));
+                        abaCarros.setBackground(new Color(26, 9, 133));
+                        abaCliente.setBackground(new Color(26, 9, 133));
+                        abaAlugar.setBackground(new Color(26, 9, 133));
                         abaDevolver.setBackground(new Color(225, 230, 235, 255));
-                        logoutB.setBackground(new Color(197, 4, 27));
+                        logoutB.setBackground(new Color(26, 9, 133));
 
                         MostrarAluguer();
                     }
@@ -784,32 +784,34 @@ public class TelaMain extends JFrame {
 
         redPanelD = new JPanel(null);
         redPanelD.setBounds(720, 0, 200, 800);
-        redPanelD.setBackground(new Color(197, 4, 27));
+        redPanelD.setBackground(new Color(26, 9, 133));
         direitaDvlvr.add(redPanelD);
         // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        codigoDvlvr = new JLabel("Codigo");
+        codigoDvlvr = new JLabel("Codigo do Aluguer(Enter):");
         codigoDvlvrF = new JTextField(30);
-        idClnDvl = new JLabel("ID Cliente");
+        idClnDvl = new JLabel("Cliente:");
         clnDvF = new JTextField(30);
-        idCarDvlvr = new JLabel("ID Carro");
+        idCarDvlvr = new JLabel("Viatura:");
         idCarDvlvrF = new JTextField(30);
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        codigoDvlvr.setBounds(100, 100, 100, 30);
+        codigoDvlvr.setBounds(100, 100, 170, 30);
         direitaDvlvr.add(codigoDvlvr);
 
-        codigoDvlvrF.setBounds(100, 125, 80, 30);
+        codigoDvlvrF.setBounds(100, 125, 45, 30);
         direitaDvlvr.add(codigoDvlvrF);
         // .setEnabled(false);
-        idClnDvl.setBounds(250, 100, 80, 30);
+        idClnDvl.setBounds(270, 100, 80, 30);
         direitaDvlvr.add(idClnDvl);
 
-        clnDvF.setBounds(250, 125, 80, 30);
+        clnDvF.setBounds(270, 125, 120, 30);
+        clnDvF.setEnabled(false);
         direitaDvlvr.add(clnDvF);
 
-        idCarDvlvr.setBounds(410, 100, 80, 30);
+        idCarDvlvr.setBounds(430, 100, 80, 30);
         direitaDvlvr.add(idCarDvlvr);
 
-        idCarDvlvrF.setBounds(410, 125, 80, 30);
+        idCarDvlvrF.setBounds(430, 125, 120, 30);
+        idCarDvlvrF.setEnabled(false);
         direitaDvlvr.add(idCarDvlvrF);
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         btnDevolver = new JButton("Devolver");
@@ -824,7 +826,7 @@ public class TelaMain extends JFrame {
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // tabela para ler os dados inseridos
-        Object[] columnD = { "Codigo", "ID Carro", "ID Cliente", "Taxa", "Data Aluguer", "Data Devolução" };
+        Object[] columnD = { "Codigo", "Cliente", "Matricula", "Taxa", "Data Aluguer", "Data Devolução" };
         modeloD.setColumnIdentifiers(columnD);
 
         tbAluguer = new JTable();
@@ -835,7 +837,7 @@ public class TelaMain extends JFrame {
 
         JScrollPane rolagemD = new JScrollPane(tbAluguer);
         rolagemD.getViewport().setViewPosition(new Point(280, 280));
-        rolagemD.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+        rolagemD.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
         rolagemD.setBounds(0, 400, 720, 400);
         direitaDvlvr.add(rolagemD);
 
@@ -843,7 +845,7 @@ public class TelaMain extends JFrame {
         KeyListener listenerD = new KeyListener() {
             @Override
             public void keyPressed(KeyEvent ev) {
-                carIDLoad(ev);
+                dvlvrCarro(ev);
             }
 
             @Override
@@ -877,11 +879,11 @@ public class TelaMain extends JFrame {
                 });
 
         // definir cor de fundo para os butões
-        abaCarros.setBackground(new Color(197, 4, 27));
-        abaCliente.setBackground(new Color(197, 4, 27));
-        abaAlugar.setBackground(new Color(197, 4, 27));
-        abaDevolver.setBackground(new Color(197, 4, 27));
-        logoutB.setBackground(new Color(197, 4, 27));
+        abaCarros.setBackground(new Color(26, 9, 133));
+        abaCliente.setBackground(new Color(26, 9, 133));
+        abaAlugar.setBackground(new Color(26, 9, 133));
+        abaDevolver.setBackground(new Color(26, 9, 133));
+        logoutB.setBackground(new Color(26, 9, 133));
 
         // definir a cor das letras dos butões
         abaCarros.setForeground(Color.WHITE);
@@ -1235,8 +1237,8 @@ public class TelaMain extends JFrame {
         for (AluguerDTO list : objAluguerDal.PesquisaAluguer()) {
             modeloD.addRow(new Object[] {
                     list.getCodigo(),
-                    list.getId_carro(),
-                    list.getId_cliente(),
+                    list.getNomeCliente(),
+                    list.getMatriculaCarro(),
                     list.getTaxa(),
                     list.getData_alugar(),
                     list.getData_devolver()
@@ -1245,11 +1247,40 @@ public class TelaMain extends JFrame {
     }
     // metodo para devolver carro
 
-    private void CarregarCampoDvlvr() {
-        int set = tbAluguer.getSelectedRow();
-        codigoDvlvrF.setText(tbAluguer.getModel().getValueAt(set, 0).toString());
-        clnDvF.setText(tbAluguer.getModel().getValueAt(set, 0).toString());
-        idCarDvlvrF.setText(tbAluguer.getModel().getValueAt(set, 0).toString());
+    private void dvlvrCarro(KeyEvent evt) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String IdAluguer = codigoDvlvrF.getText();
+
+            try {
+                conn = new ConexaoSQL().BDconecta();
+                String sql = "SELECT a.Codigo, a.IDCarro, a.Taxa, a.Data_Aluguer, a.Data_Devolucao, a.Estado, "
+                + "c.Nome AS NomeCliente, c.Apelido, c.Telefone, "
+                + "car.Modelo, car.Marca, car.Matricula "
+                + "FROM tbAluguer a "
+                + "JOIN tbClientes c ON a.IDCliente = c.IDCliente "
+                + "JOIN tbCarros car ON a.IDCarro = car.IDCarro "
+                + "WHERE a.Codigo = ?";
+                prep = conn.prepareStatement(sql);
+                prep.setString(1, IdAluguer);
+
+                algrSet = prep.executeQuery();
+
+                if (algrSet.next() == false) {
+                    JOptionPane.showMessageDialog(null,
+                            "Aluguer não encontrado");
+                } else {
+                    String Modelo = algrSet.getString("Modelo");
+                    String Marca = algrSet.getString("Marca");
+                    idCarDvlvrF.setText(Marca.trim() + " " + Modelo.trim());
+
+                    String nomeC = algrSet.getString("NomeCliente");
+                    String apelidoC = algrSet.getString("Apelido");
+                    clnDvF.setText(nomeC.trim() + " " + apelidoC.trim());
+                }
+            } catch (Exception e) {
+
+            }
+        }
     }
 
     public void Devolver() {
@@ -1321,34 +1352,6 @@ public class TelaMain extends JFrame {
         MostrarAluguer();
     }
     
-
-    private void carIDLoad(KeyEvent ev) {
-        if (ev.getKeyCode() == KeyEvent.VK_ENTER) {
-            String carID = codigoDvlvrF.getText();
-
-            try {
-                Dconn = new ConexaoSQL().BDconecta();
-                prepD = Dconn.prepareStatement("select * from tbAluguer where IDCarro = ?");
-                prepD.setString(1, carID);
-
-                dvlvSet = prepD.executeQuery();
-
-                if (dvlvSet.next() == true) {
-                    JOptionPane.showMessageDialog(null,
-                            "O carro está disponivel ou não existe");
-                } else {
-                    String nomeC = dvlvSet.getString("Nome");
-                    idCarDvlvrF.setText(nomeC.trim());
-
-                    int idC = dvlvSet.getInt("IDCliente");
-                    String idCln = Integer.toString(idC);
-                    clnDvF.setText(idCln.trim());
-                }
-            } catch (Exception e) {
-
-            }
-        }
-    }
 
     public static void main(String[] args) {
         TelaMain T = new TelaMain();
