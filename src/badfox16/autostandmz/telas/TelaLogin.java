@@ -45,13 +45,13 @@ public class TelaLogin extends JFrame {
     usernField.addFocusListener(new FocusListener(){
         @Override
         public void focusGained(FocusEvent focusEvent){
-            usernField.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+            usernField.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
         }
 
         @Override
         public void focusLost(FocusEvent e) {
-            usernField.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+            usernField.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
 
         }
 
@@ -64,34 +64,34 @@ public class TelaLogin extends JFrame {
     passwordField.addFocusListener(new FocusListener(){
         @Override
         public void focusGained(FocusEvent focusEvent){
-            passwordField.setBorder(BorderFactory.createLineBorder(new Color(241, 5, 34)));
+            passwordField.setBorder(BorderFactory.createLineBorder(new Color(26, 9, 133)));
 
         }
 
         @Override
         public void focusLost(FocusEvent e) {
-            passwordField.setBorder(BorderFactory.createLineBorder(new Color(175, 2, 23)));
+            passwordField.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6)));
 
         }
 
     });
 
     //label de bem vindo
-    bvLabel = new JLabel("Bem-vindo :-)");
+    bvLabel = new JLabel("Bem-vindo ;-;");
     bvLabel.setBounds(47, 30, 200, 25);
     bvLabel.setForeground(Color.BLACK);
     bvLabel.setFont(new Font("Lucida",Font.BOLD,26));
 
     //label sobre o programa
-    sobreL = new JLabel("AUTOSTAND por Mutizo Maita, 2022");
+    sobreL = new JLabel("");
     sobreL.setBounds(41, 370, 250, 20);
     sobreL.setFont(new Font("Lucida",Font.BOLD,11));
 
     //Botao de login 
     loginIco = new ImageIcon("src/badfox16/autostandmz/icon/login.png","Login");
-    loginButton = new JButton("LOGIN",loginIco);
+    loginButton = new JButton("ENTRAR",loginIco);
     loginButton.setForeground(Color.white);
-    loginButton.setBackground(new Color(175, 2, 23));
+    loginButton.setBackground(new Color(25, 10, 130));
     loginButton.setBounds(80, 300, 120, 35);
     loginButton.setBorder(BorderFactory.createBevelBorder(2,new Color(203, 1, 27, 1),new Color(203, 1, 27, 1)));
 
@@ -168,7 +168,7 @@ public class TelaLogin extends JFrame {
     //cor dos paineis
     left.setBackground(new Color(225,230,235,255));
     left1.setBackground(new Color(255,255,255,255));
-    right.setBackground(new Color(197, 4, 27));
+    right.setBackground(new Color(26, 9, 133));
 
     //adicionar os componentes aos respetivos paineis
     add(logoL);
